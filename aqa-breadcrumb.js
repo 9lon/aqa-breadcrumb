@@ -1,8 +1,10 @@
-<link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
-<link rel="import" href="../aqa-font/aqa-mitr-font.html">
-<dom-module id="aqa-breadcrumb">
-    <template>
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import '@polymer/polymer/lib/elements/dom-repeat.js';
+import '@aqa/aqa-font/aqa-mitr-font.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+class AqaBreadcrumb extends PolymerElement {
+  static get template() {
+    return html`
         <style>
               ul{
                 padding: 0px;
@@ -48,23 +50,21 @@
         <ul class="breadcrumb">
              <template is="dom-repeat" items="[[items]]"> 
                 <li>
-                    <a href$="[[item.url]]">[[item.label]]</a>
+                    <a href\$="[[item.url]]">[[item.label]]</a>
                 </li>
              </template> 
         </ul>
-    </template>
-    <script>
-        class AqaBreadcrumb extends Polymer.Element {
-            static get is() { return 'aqa-breadcrumb'; }
-            static get properties() {
-                return {
-                    items:{
-                        type:Array,
-                        value:[]
-                    }
-                }
-            }
-        }
-        window.customElements.define(AqaBreadcrumb.is, AqaBreadcrumb);
-    </script>
-</dom-module>
+`;
+  }
+
+  static get is() { return 'aqa-breadcrumb'; }
+  static get properties() {
+      return {
+          items:{
+              type:Array,
+              value:[]
+          }
+      }
+  }
+}
+window.customElements.define(AqaBreadcrumb.is, AqaBreadcrumb);
